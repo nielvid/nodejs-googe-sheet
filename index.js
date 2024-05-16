@@ -4,7 +4,8 @@ dotenv.config()
 
 async function authenticate() {
   const auth = new google.auth.GoogleAuth({
-    keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,  // add this to system variables,
+    keyFile: `${process.env.HOME}/${process.env.GOOGLE_APPLICATION_CREDENTIALS}`,
+    // keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS,  // add this to system variables,
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   })
   const authClient = await auth.getClient()
@@ -80,13 +81,13 @@ async function postToSheet({ spreadsheetId, sheetName, data }) {
 //      console.log(err)
 //    })
 
-// postToSheet({ spreadsheetId, sheetName, data })
-//   .then((res) => {
-//     console.log(res.status, 'sucessfully created record')
-//   })
-//   .catch((err) => {
-//     console.log(err)
-//   })
+postToSheet({ spreadsheetId, sheetName, data })
+  .then((res) => {
+    console.log(res.status, 'sucessfully created record')
+  })
+  .catch((err) => {
+    console.log(err)
+  })
 
 // getSpreadSheetInfo(spreadsheetId)
 //   .then((res) => {
